@@ -1,0 +1,11 @@
+This program should have
+converted a text file from
+“Unix” LF to “DOS” CR,LF
+newline convention
+The program exhibits a common
+oversight
+In the output file, all space are
+missing
+operator>> by default skips
+whitespaces
+Typically, this is what is wantedd
