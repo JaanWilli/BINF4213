@@ -4,33 +4,22 @@
 
 using namespace std;
 
-int hello_world() {
+void hello_world() {
     cout << "Hello World" << endl;
-    return 0;
 }
 
-int convert() {
-    ifstream ifile;
-    ifile.open(R"(C:\Users\willi\Documents\BINF4213\ex1_1\in.txt)");
-    ofstream ofile;
-    ofile.open(R"(C:\Users\willi\Documents\BINF4213\ex1_1\out.txt)");
-
+int main(int argc, char *argv[]) {
+    ifstream ifs(argv[1]);
+    ofstream ofs(argv[2]);
     char c;
-    if (ifile.is_open() && ofile.is_open()) {
-        while(ifile.good()) {
-            ifile.get(c);
-            if (c=='\n') ofile << "\r\n";
-            else ofile << c;
+    for (;;) {
+        ifs.get(c);
+        if (!ifs.good()) break;
+        if (c=='\n') ofs << "\r\n";
+        else if (c == '\r') {
+            ofs << "\n";
+            ifs.get(c);
         }
-        ifile.close();
+        else ofs << c;
     }
-    else {
-        cout << "unable to open";
-    }
-    return 0;
-}
-
-int main() {
-    hello_world();
-    convert();
 }

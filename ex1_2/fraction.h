@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-
 class fraction {
 
     int c,d;
@@ -18,13 +17,9 @@ public:
     { /*void*/ }
 
     fraction operator+(fraction f);
-
     fraction operator-(fraction f);
     fraction operator*(fraction f);
     fraction operator/(fraction f);
-
-
-
 };
 
 #endif //EX1_2_FRACTION_H

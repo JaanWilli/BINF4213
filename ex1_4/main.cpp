@@ -33,6 +33,7 @@ int main() {
 
     while(true) {
 
+        cout << "Command: ";
         string line;
         getline(cin, line);
         istringstream is(line);

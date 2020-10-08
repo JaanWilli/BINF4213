@@ -7,6 +7,7 @@ void static_test() {
     fraction f(1, 3);
     fraction g(3, 4);
 
+    cout << "Performing some sample tests..." << endl;
     cout << f << " + " << g << " = " << f + g << endl;
     cout << f << " - " << g << " = " << f - g << endl;
     cout << f << " * " << g << " = " << f * g << endl;
@@ -16,7 +17,7 @@ void static_test() {
     cout << f << " / " << 3 << " = " << f / 3 << endl;
 }
 
-void dynamic_test() {
+[[noreturn]] void dynamic_test() {
 
     cout << "input example: (1/3) + (3/4)" << endl;
     for (;;) {
@@ -44,6 +45,17 @@ void dynamic_test() {
 }
 
 
-int main() {
-    dynamic_test();
+int main(int argc, char* argv[]) {
+
+    if (argc <= 1) {
+        cout << "available arguments: [-s] or [-i]" << endl;
+    }
+    else if (argc > 2) {
+        cout << "Too many arguments" << endl;
+    }
+    else {
+        string arg = argv[1];
+        if (arg == "-s") static_test();
+        else if (arg == "-i") dynamic_test();
+    }
 }

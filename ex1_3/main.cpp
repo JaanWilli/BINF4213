@@ -5,32 +5,26 @@
 
 using namespace std;
 
-string path = R"(C:\Users\willi\Documents\BINF4213\ex1_3\)";
+int main(int argc, char *argv[]) {
 
-
-void spell_check() {
-    set<string> dict;
-    string dict_word;
-    string text_word;
-
-    ifstream dict_stream;
-    dict_stream.open(path + "dict.txt");
-
-    while (getline(dict_stream, dict_word)) {
-        dict.insert(dict_word);
+    if (argc != 3) {
+        cout << "Invalid arguments: [dictionary file] [text file]" << endl;
+        return 0;
     }
 
-    ifstream text_stream;
-    text_stream.open(path + "text.txt");
+    set<string> dict;
+    string w;
 
-    while (text_stream >> text_word) {
-        if (dict.count(text_word) == 0) {
-            cout << text_word << endl;
+    ifstream ifdict(argv[1]);
+    while (ifdict >> w) {
+        dict.insert(w);
+    }
+
+    ifstream iftext(argv[2]);
+    while (iftext >> w) {
+        if (w.back() == '.' || w.back() == '?' || w.back() == '!') w.pop_back();
+        if (dict.count(w) == 0) {
+            cout << w << endl;
         }
     }
-}
-
-
-int main() {
-    spell_check();
 }
