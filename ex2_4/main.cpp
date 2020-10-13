@@ -1,51 +1,17 @@
 #include <iostream>
 #include "playfield.h"
+#include "util.h"
+#include "game.h"
+#include "human_player.h"
 
 using namespace std;
 
-int next_player(int current) {
-    return current % 2 + 1;
-}
-
-bool has_won(playfield p, int pl) {
-    for (int i = 0; i < playfield::height; ++i) {
-        for (int j = 0; j < playfield::width; ++j) {
-            if (p.stoneat(j,i) == pl && p.stoneat(j,i+1) == pl && p.stoneat(j,i+2) == pl && p.stoneat(j,i+3) == pl) {
-                return true;
-            }
-            if (p.stoneat(j,i) == pl && p.stoneat(j+1,i+1) == pl && p.stoneat(j+2,i+2) == pl && p.stoneat(j+3,i+3) == pl) {
-                return true;
-            }
-            if (p.stoneat(j,i) == pl && p.stoneat(j+1,i) == pl && p.stoneat(j+2,i) == pl && p.stoneat(j+3,i) == pl) {
-                return true;
-            }
-            if (p.stoneat(j,i) == pl && p.stoneat(j-1,i-1) == pl && p.stoneat(j-2,i-2) == pl && p.stoneat(j-3,i-3) == pl) {
-                return true;
-            }
-        }
-    }
-    return false;
+template<typename P1, typename P2>
+void start_game(P1 p1, P2 p2) {
+    game<playfield, P1, P2> g(p1, p2);
+    g.play();
 }
 
 int main() {
-
-    playfield p;
-    int player = 1;
-
-    int in;
-    for (;;) {
-        cout << "It it player " << player << "'s turn: ";
-        cin >> in;
-        cout << endl;
-        p.insert(in, player);
-        p.print();
-
-        if(has_won(p, player)) {
-            cout << "Player " << player << " won!" << endl;
-            return 0;
-        }
-        else {
-            player = next_player(player);
-        }
-    }
+    start_game(human_player<playfield>(1), human_player<playfield>(2));
 }
