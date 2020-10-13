@@ -1,0 +1,30 @@
+1c1
+< 	.file	"swap.cpp"
+---
+> 	.file	"c_swap.cpp"
+8,11c8,11
+< 	.globl	_Z4swapRiS_
+< 	.def	_Z4swapRiS_;	.scl	2;	.type	32;	.endef
+< 	.seh_proc	_Z4swapRiS_
+< _Z4swapRiS_:
+---
+> 	.globl	_Z4swapPiS_
+> 	.def	_Z4swapPiS_;	.scl	2;	.type	32;	.endef
+> 	.seh_proc	_Z4swapPiS_
+> _Z4swapPiS_:
+79c79
+< 	call	_Z4swapRiS_
+---
+> 	call	_Z4swapPiS_
+131,133c131,133
+< 	.def	_GLOBAL__sub_I__Z4swapRiS_;	.scl	3;	.type	32;	.endef
+< 	.seh_proc	_GLOBAL__sub_I__Z4swapRiS_
+< _GLOBAL__sub_I__Z4swapRiS_:
+---
+> 	.def	_GLOBAL__sub_I__Z4swapPiS_;	.scl	3;	.type	32;	.endef
+> 	.seh_proc	_GLOBAL__sub_I__Z4swapPiS_
+> _GLOBAL__sub_I__Z4swapPiS_:
+152c152
+< 	.quad	_GLOBAL__sub_I__Z4swapRiS_
+---
+> 	.quad	_GLOBAL__sub_I__Z4swapPiS_
