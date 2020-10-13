@@ -1,0 +1,14 @@
+h/cc	char ch;													variable declaration
+h/cc	string s;													variable declaration
+h		extern int error_number;									variable used elsewhere (implementation file)
+h		static double sq(double);									function declaration
+cc		int count=1;												variable definition
+h/cc	const double pi=3.2; // according to Indiana Pi Bill		constants may be defined in header or implementation file
+h		struct fraction { int c; int d; };							function declaration
+cc		char *prog[]={"echo","hello","world!",NULL};				variable definition
+h		extern "C" void c_swap(int *a, int *b);						function used elsewhere (implementation file)
+h		double sqrt(double);										function declaration
+cc		void swap(int &a, int &b) { int c=a; a=b; b=c; }			function implementation
+h		template<typename T> T add(T a, T b) { return a+b; }		template declaration
+h/cc	namespace { int a; }
+h/cc	struct user;												variable declaration
