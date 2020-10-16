@@ -6,10 +6,9 @@
 
 using namespace std;
 
-int main() {
-
-    RPN<int> rpn_int;
-    int in_int;
+template<typename T>
+int run_rpn(RPN<T> &rpn) {
+    T in;
 
     while(true) {
 
@@ -23,34 +22,54 @@ int main() {
             is >> c;
 
             if (c == "n") {
-                is >> in_int;
-                rpn_int.push(in_int);
+                is >> in;
+                rpn.push(in);
             }
             else if (c == "+") {
-                rpn_int.add();
+                rpn.add();
             }
             else if (c == "-") {
-                rpn_int.subtract();
+                rpn.subtract();
             }
             else if (c == "*") {
-                rpn_int.multiply();
+                rpn.multiply();
             }
             else if (c == "/") {
-                rpn_int.divide();
+                rpn.divide();
             }
             else if (c == "min") {
-                rpn_int.min();
+                rpn.min();
             }
             else if (c == "max") {
-                rpn_int.max();
+                rpn.max();
             }
             else if (c == "d") {
-                rpn_int.pop();
+                rpn.pop();
             }
             else if (c == "q") {
                 return 0;
             }
         }
-        rpn_int.print();
+        rpn.print();
+    }
+}
+
+int main(int argc, char *argv[]) {
+
+    if (argc == 2) {
+        string arg1(argv[1]);
+
+        if (arg1 == "int") {
+            RPN<int> rpn;
+            run_rpn(rpn);
+        }
+        else if (arg1 == "fraction") {
+            RPN<fraction> rpn;
+            run_rpn(rpn);
+        }
+        else if (arg1 == "double") {
+            RPN<double> rpn;
+            run_rpn(rpn);
+        }
     }
 }

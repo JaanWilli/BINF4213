@@ -4,7 +4,7 @@
 #include <iostream>
 #include "util.h"
 
-template<typename F, typename u=util<F>>
+template<typename F>
 struct human_player {
     int id;
 
@@ -15,7 +15,7 @@ public:
         int column;
         for (;;) {
             std::cin >> column;
-            if (u::is_playable(field, column)) {
+            if (util<F>::is_playable(field, column)) {
                 std::cout << std::endl;
                 return column;
             }

@@ -1,9 +1,8 @@
-#ifndef EX1_4_RPN_H
-#define EX1_4_RPN_H
+#ifndef EX2_3_RPN_H
+#define EX2_3_RPN_H
 
 #include <iostream>
 #include "../ex2_1/pvector.h"
-
 
 template<typename T>
 class RPN {
@@ -58,6 +57,5 @@ public:
     }
 };
 
-#endif //EX1_4_RPN_H
 
-//https://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
+#endif //EX2_3_RPN_H

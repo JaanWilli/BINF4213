@@ -4,7 +4,11 @@
 using namespace std;
 
 playfield::playfield() {
-    std::fill(&rep[0][0], &rep[0][0] + width * height, (int)none);
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            rep[j][i] = none;
+        }
+    }
 }
 
 int playfield::stoneat(int x, int y) const {

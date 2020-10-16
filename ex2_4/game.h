@@ -4,7 +4,7 @@
 #include <iostream>
 #include "util.h"
 
-template<typename F, typename P1, typename P2, typename u=util<F>>
+template<typename F, typename P1, typename P2>
 struct game {
 
     F field;
@@ -21,7 +21,7 @@ public:
 
     void play() {
 
-        while (u::is_not_full(field)) {
+        while (util<F>::is_not_full(field)) {
             field.print();
             std::cout << "It it player " << current << "'s turn: ";
 
@@ -32,12 +32,13 @@ public:
                 play_round(player2, F::player2);
             }
 
-            if (u::has_won(field, current)) {
+            if (util<F>::has_won(field, current)) {
+                field.print();
                 std::cout << "Player " << current << " won!" << std::endl;
                 return;
             }
 
-            current = u::next_player(current);
+            current = util<F>::next_player(current);
         }
         std::cout << "It's a draw..." << std::endl;
     }
