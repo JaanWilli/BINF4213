@@ -14,3 +14,10 @@
 - 2.3 Template-based RPN
 - 2.4 Connect 4
 - 2.5 * vs &
+
+### Exercise 3
+- 3.1 Emulating Pointers
+- 3.2 Persistent Vector / Set with Traits
+- 3.3 RPN Complex Numbers
+- 3.4 Upgraded Spell Checker
+- 3.5 Connect 4 Computer Player
