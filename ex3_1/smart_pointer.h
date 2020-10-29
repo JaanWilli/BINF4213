@@ -16,7 +16,8 @@ class smart_pointer {
 
     inline void release()
     {
-        if (--(*c) <= 0) {
+        --(*c);
+        if ((*c) <= 0) {
             delete t;
             delete c;
         }
@@ -24,7 +25,7 @@ class smart_pointer {
 
     friend std::ostream& operator <<(std::ostream& os, smart_pointer<T>& p)
     {
-        os << '(' << "address: " << (void*)p.t << ", " << "count: " << *p.c << ')';
+        os << (void*)p.t;
         return os;
     }
 
@@ -44,12 +45,24 @@ public:
         release();
     }
 
+    int counter() {
+        return *c;
+    }
+
     T& operator*() {
         return *t;
     }
 
     T* operator->() {
         return t;
+    }
+
+    smart_pointer<T>& operator=(const smart_pointer<T> &p) {
+        release();
+        t = p.t;
+        c = p.c;
+        acquire();
+        return *this;
     }
 };
 

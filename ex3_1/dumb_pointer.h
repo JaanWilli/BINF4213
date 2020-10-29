@@ -10,7 +10,7 @@ class dumb_pointer {
 
     friend std::ostream& operator <<(std::ostream& os, dumb_pointer<T>& p)
     {
-        os << '(' << "address: " << (void*)p.t << ')';
+        os << (void*)p.t;
         return os;
     }
 

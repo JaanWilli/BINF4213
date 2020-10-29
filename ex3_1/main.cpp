@@ -6,24 +6,67 @@
 
 using namespace std;
 
-template<typename T>
-void pass_smart_pointer(smart_pointer<T> p)
-{
-    cout << ">>> p_pass: " << p << endl << endl;
+class C {
+public: int x;
+    explicit C(int x) : x(x) {}
+    void add() {++x;}
+};
+
+void print(smart_pointer<C> p) {
+    cout << p.counter() << ": " <<  p << endl;
+}
+
+void dumb_test() {
+    cout << "Dumb Pointer Test:" << endl;
+
+    C *c = new C(1);
+    dumb_pointer<C> p = c;
+
+    cout << p << endl;
+    cout << p -> x << endl;
+}
+
+void smart_test() {
+    cout << "Smart Pointer Test:" << endl;
+
+    C *c1 = new C(1);
+    C *c2 = new C(2);
+
+    smart_pointer<C> p(c1);
+    cout << p.counter() << endl;
+
+    smart_pointer<C> q(p);
+    cout << p.counter() << endl;
+    cout << q.counter() << endl;
+
+    smart_pointer<C> r(c2);
+    cout << r.counter() << endl;
+
+    cout << "---" << endl;
+
+    q = r;
+    cout << p.counter() << endl;
+    cout << q.counter() << endl;
+    cout << r.counter() << endl;
+
+    cout << "---" << endl;
+
+    print(p);
+    print(q);
+    print(r);
+
+    p->add();
+    cout << p->x << endl;
+    q->add();
+    cout << q->x << endl;
+    r->add();
+    cout << r->x << endl;
 }
 
 int main() {
+    dumb_test();
 
-    smart_pointer<list<int>> p(new list<int>());
-    p->push_back(1);
-    p->push_back(2);
-    cout << ">>> p:      " << p << endl << endl;
+    cout << "----------------------------------" << endl << endl;
 
-    list<int> l_new = *p;
-    cout << ">>> l:      " << p->size() << endl;
-    cout << "    l_new:  " << l_new.size() << endl << endl;
-
-    pass_smart_pointer(p);
-
-    cout << ">>> p:      " << p << endl << endl;
+    smart_test();
 }
