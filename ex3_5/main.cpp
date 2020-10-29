@@ -4,6 +4,7 @@
 #include "game.h"
 #include "human_player.h"
 #include "jan_player.h"
+#include "complayer.h"
 
 using namespace std;
 
@@ -14,5 +15,6 @@ void start_game(P1 p1, P2 p2) {
 }
 
 int main() {
-    start_game(human_player<playfield>(1), jan_player<playfield>(2));
+    complayer<playfield> opp = {2};
+    start_game(jan_player<playfield>(1), opp);
 }

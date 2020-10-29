@@ -13,10 +13,8 @@ public:
     const static char player1=1;
     const static char player2=2;
 
-protected:
     char rep[playfield::width][playfield::height]{};
 
-public:
     playfield();
 
     int stoneat(int x, int y)  const;
