@@ -1,10 +1,11 @@
 #include <iostream>
 #include "playfield.h"
-#include "playfield_traits.h"
 #include "game.h"
 #include "human_player.h"
 #include "jan_player.h"
-#include "complayer.h"
+#include "dominique_player.h"
+#include "vincent_player.h"
+#include "remy_player.h"
 
 using namespace std;
 
@@ -15,6 +16,12 @@ void start_game(P1 p1, P2 p2) {
 }
 
 int main() {
-    complayer<playfield> opp = {2};
-    start_game(jan_player<playfield>(1), opp);
+    jan_player<playfield> jan = {1};
+
+    human_player<playfield> human = {2};
+
+    dominique_player<playfield> dominique = {2};
+    vincent_player<playfield> vincent = {2};
+    remy_player<playfield> remy = {2};
+    start_game(jan, dominique);
 }

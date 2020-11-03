@@ -1,7 +1,7 @@
 #include <sstream>
 #include "spellchecker.h"
 
-spellchecker::spellchecker(string &dict) : set(dict) {}
+spellchecker::spellchecker(string &dict) : dictionary(dict) {}
 
 void spellchecker::start_check(string &file) {
 
@@ -19,7 +19,7 @@ void spellchecker::check_line(string &line) {
     while (next_word(start, stop, line.end())) {
         string word(start, stop);
 
-        if (set.count(word) == 0 && ignored.count(word) == 0) {
+        if (dictionary.count(word) == 0 && ignored.count(word) == 0) {
             char c;
             cout << "found word: " << word << endl;
             cout << "add, ignore, correct? [a,i,c]: ";
@@ -47,7 +47,7 @@ void spellchecker::check_line(string &line) {
 }
 
 void spellchecker::add(string &word) {
-    set.insert(word);
+    dictionary.insert(word);
 }
 
 void spellchecker::ignore(string &word) {
@@ -77,7 +77,7 @@ bool spellchecker::next_word(string::iterator &start, string::iterator &stop, co
     while (stop < end && !isspace(*stop)) {
         ++stop;
     }
-    while (stop-1 > start && !isalpha(*(stop-1))) {
+    if (stop-1 > start && !isalpha(*(stop-1))) {
         --stop;
     }
     return start != stop;

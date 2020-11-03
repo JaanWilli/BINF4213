@@ -28,14 +28,13 @@ struct jan_player {
         copy_playfield(const F &field) {
             for (int i = 0; i < width; ++i) {
                 for (int j = 0; j < height; ++j) {
-                    rep[i][j] = field.stoneat(i,j);
+                    rep[i][j] = field.stoneat(i, j);
                 }
             }
         }
 
         bool copy_insert(int x, int player) {
             if (T::is_playable(*this, x)) {
-                --x;
                 int y = height - 1;
                 while (rep[x][y] != none) y--;
                 rep[x][y] = player;
@@ -45,7 +44,6 @@ struct jan_player {
         }
 
         void copy_remove(int x, int player) {
-            --x;
             int y = 0;
             while (rep[x][y] == none)
                 ++y;
@@ -69,11 +67,9 @@ struct jan_player {
 
 public:
 
-    explicit jan_player(int id) : id(id) {
-        srand((unsigned)time(0));
-    }
+    int play(F &field) {
+        srand((unsigned) time(0));
 
-    int play(const F &field) {
         copy_playfield playfield(field);
         int opp_id = T::next_player(id);
 
@@ -93,27 +89,36 @@ public:
         // identify where we should not place stone because it could help opponent win
         std::vector<int> good_places;
         for (int i = 0; i < F::width; ++i) {
-            if (playfield.copy_insert(i+1, id)) {
+            if (playfield.copy_insert(i, id)) {
                 if (!playfield.would_win(i, opp_id))
                     good_places.push_back(i);
                 playfield.copy_remove(i, id);
             }
         }
 
+        // identify existing formations that can be extended
         for (int x : good_places) {
-            for (int y = 0; y < F::height; ++y) {
-                if (playfield.stoneat(x, y) == id && playfield.stoneat(x+1, y) == id && field.stoneat(x+2, y) == playfield::none) {
-                    return x;
+            if (playfield.copy_insert(x, id)) {
+                bool nice = false;
+                for (int y = 0; y < F::height; ++y) {
+                    if (playfield.stoneat(x, y) == id && playfield.stoneat(x + 1, y) == id &&
+                        field.stoneat(x + 2, y) == id) {
+                        nice = true;
+                    }
+                    if (playfield.stoneat(x, y) == id && playfield.stoneat(x + 1, y + 1) == id &&
+                        field.stoneat(x + 2, y + 2) == id) {
+                        nice = true;
+                    }
+                    if (playfield.stoneat(x, y) == id && playfield.stoneat(x, y + 1) == id &&
+                        field.stoneat(x, y + 2) == id) {
+                        nice = true;
+                    }
+                    if (playfield.stoneat(x, y) == id && playfield.stoneat(x - 1, y - 1) == id &&
+                        field.stoneat(x - 2, y - 2) == id) {
+                        nice = true;
+                    }
                 }
-                if (playfield.stoneat(x, y) == id && playfield.stoneat(x+1, y+1) == id && field.stoneat(x+2, y+2) == playfield::none) {
-                    return x;
-                }
-                if (playfield.stoneat(x, y) == id && playfield.stoneat(x, y+1) == id && field.stoneat(x, y+2) == playfield::none) {
-                    return x;
-                }
-                if (playfield.stoneat(x, y) == id && playfield.stoneat(x-1, y-1) == id && field.stoneat(x-2, y-2) == playfield::none) {
-                    return x;
-                }
+                if (nice) return x;
             }
         }
 

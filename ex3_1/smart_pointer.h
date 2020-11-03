@@ -9,13 +9,11 @@ class smart_pointer {
     T *t;
     int *c;
 
-    inline void acquire()
-    {
+    inline void add_one() {
         ++(*c);
     }
 
-    inline void release()
-    {
+    inline void remove_one() {
         --(*c);
         if ((*c) <= 0) {
             delete t;
@@ -23,26 +21,18 @@ class smart_pointer {
         }
     }
 
-    friend std::ostream& operator <<(std::ostream& os, smart_pointer<T>& p)
-    {
-        os << (void*)p.t;
-        return os;
-    }
-
 public:
 
-    smart_pointer(T *t) : t(t) {
+    explicit smart_pointer(T *t) : t(t) {
         c = new int(1);
     }
 
-    smart_pointer(const smart_pointer<T>& p) : t(p.t), c(p.c)
-    {
-        acquire();
+    smart_pointer(const smart_pointer<T>& p) : t(p.t), c(p.c) {
+        add_one();
     }
 
-    ~smart_pointer()
-    {
-        release();
+    ~smart_pointer() {
+        remove_one();
     }
 
     int counter() {
@@ -58,10 +48,12 @@ public:
     }
 
     smart_pointer<T>& operator=(const smart_pointer<T> &p) {
-        release();
+        if (this == &p)
+            return *this;
+        remove_one();
         t = p.t;
         c = p.c;
-        acquire();
+        add_one();
         return *this;
     }
 };

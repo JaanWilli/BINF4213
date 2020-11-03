@@ -30,7 +30,6 @@ std::string playfield::stone_repr(int x, int y) const {
 
 void playfield::insert(int x, int player) {
     if (playfield_traits<playfield>::is_playable(*this, x)) {
-        --x;
         int y = height - 1;
         while (rep[x][y] != none) y--;
         rep[x][y] = player;

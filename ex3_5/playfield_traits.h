@@ -6,7 +6,6 @@ template<typename F>
 struct playfield_traits {
 
     static bool is_playable(const F &field, int column) {
-        --column;
         return column >= 0 && column < F::width && field.stoneat(column, 0) == F::none;
     }
 

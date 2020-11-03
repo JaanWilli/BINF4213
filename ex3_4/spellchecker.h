@@ -10,12 +10,12 @@ using namespace std;
 
 class spellchecker {
 
-    pset<string> set;
+    pset<string> dictionary;
     std::set<string> ignored;
 
 public:
 
-    spellchecker(string &dict);
+    explicit spellchecker(string &dict);
 
     void start_check(string &file);
     void check_line(string &line);

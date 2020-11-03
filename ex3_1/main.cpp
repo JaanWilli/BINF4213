@@ -6,40 +6,57 @@
 
 using namespace std;
 
-class C {
-public: int x;
-    explicit C(int x) : x(x) {}
-    void add() {++x;}
-};
+class Object {
+    int x;
+public:
+    explicit Object(int val): x(val) {}
 
-void print(smart_pointer<C> p) {
-    cout << p.counter() << ": " <<  p << endl;
-}
+    int method1() const {
+        return x + 1;
+    }
+
+    int method2() const {
+        return x + 2;
+    }
+
+    int method3() const {
+        return x + 3;
+    }
+
+    friend ostream &operator<<(ostream &os, const Object &o) {
+        os << "value: " << o.x;
+        return os;
+    }
+};
 
 void dumb_test() {
     cout << "Dumb Pointer Test:" << endl;
 
-    C *c = new C(1);
-    dumb_pointer<C> p = c;
+    Object *o = new Object(1);
+    dumb_pointer<Object> p = o;
 
-    cout << p << endl;
-    cout << p -> x << endl;
+    cout << *p << ": " << p << endl;
+}
+
+
+void print(smart_pointer<Object> p) {
+    cout << p.counter() << ": " <<  *p << endl;
 }
 
 void smart_test() {
     cout << "Smart Pointer Test:" << endl;
 
-    C *c1 = new C(1);
-    C *c2 = new C(2);
+    Object *o1 = new Object(1);
+    Object *o2 = new Object(2);
 
-    smart_pointer<C> p(c1);
+    smart_pointer<Object> p(o1);
     cout << p.counter() << endl;
 
-    smart_pointer<C> q(p);
+    smart_pointer<Object> q(p);
     cout << p.counter() << endl;
     cout << q.counter() << endl;
 
-    smart_pointer<C> r(c2);
+    smart_pointer<Object> r(o2);
     cout << r.counter() << endl;
 
     cout << "---" << endl;
@@ -55,12 +72,10 @@ void smart_test() {
     print(q);
     print(r);
 
-    p->add();
-    cout << p->x << endl;
-    q->add();
-    cout << q->x << endl;
-    r->add();
-    cout << r->x << endl;
+    cout << "---" << endl;
+
+    cout << *p << " " << *r << endl;
+    cout << p->method1() << " " << q->method2() << " " << r->method3() << endl;
 }
 
 int main() {

@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
             run_rpn(rpn);
         }
         else if (arg1 == "complex") {
-            RPN<complex<double>> rpn;
+            RPN<complex<int>> rpn;
             run_rpn(rpn);
         }
     }

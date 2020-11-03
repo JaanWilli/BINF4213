@@ -50,8 +50,8 @@ void pset_int() {
 int main() {
 
     pvector_int();
-
+    cout << "---" << endl;
     pvector_string();
-
+    cout << "---" << endl;
     pset_int();
 }

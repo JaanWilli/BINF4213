@@ -9,14 +9,13 @@ struct human_player {
     int id;
 
 public:
-    explicit human_player(int id) : id(id) {}
 
     int play(const F &field) {
         int column;
         for (;;) {
             std::cin >> column;
-            if (playfield_traits<F>::is_playable(field, column)) {
-                return column;
+            if (playfield_traits<F>::is_playable(field, column-1)) {
+                return column-1;
             }
             else {
                 std::cout << "Wrong input. Try again: ";
