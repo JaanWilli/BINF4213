@@ -21,3 +21,11 @@
 - 3.3 RPN Complex Numbers
 - 3.4 Upgraded Spell Checker
 - 3.5 Connect 4 Computer Player
+
+### Exercise 4
+- 4.1 Connect 4 Computer Player (again)
+- 4.2 find_if in C++ and Java
+- 4.3 range() class
+- 4.4 Merge STL Containers
+- 4.5 between() algorithm
+- ~~4.6 RegEx Spell Checker~~
