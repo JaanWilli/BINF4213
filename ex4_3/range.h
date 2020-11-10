@@ -1,7 +1,30 @@
 #ifndef EX4_3_RANGE_H
 #define EX4_3_RANGE_H
 
-#include "range_iter.h"
+class range_iter {
+private:
+    int cur;
+
+public:
+    explicit range_iter(int cur) : cur(cur) {}
+
+    int operator*() const {
+        return cur;
+    }
+
+    bool operator==(const range_iter &i) const {
+        return cur == i.cur;
+    }
+
+    bool operator!=(const range_iter &i) const {
+        return cur != i.cur;
+    }
+
+    range_iter& operator++() {
+        ++cur;
+        return *this;
+    }
+};
 
 class range {
 private:
@@ -19,5 +42,7 @@ public:
         return range_iter(high);
     }
 };
+
+
 
 #endif //EX4_3_RANGE_H
