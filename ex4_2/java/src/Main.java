@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
 
@@ -9,13 +11,10 @@ public class Main {
         E elem = Finder.findIf(collection.iterator(), matcher);
         long stop = System.nanoTime();
 
-        double time = (stop -start)/1000000000.0;
+        double time = (stop - start)/1000000000.0;
         DecimalFormat f = new DecimalFormat("0.00");
 
-        if (elem == null) {
-            System.out.println("No match found in " + f.format(time) + " seconds.");
-        }
-        else {
+        if (elem != null) {
             System.out.println("Found match in " + f.format(time) + " seconds.");
         }
     }
@@ -24,14 +23,16 @@ public class Main {
 
         int size = 100000000;
         int target = 0;
-        Collection<Integer> collection = new Vector<>(size);
+
+        Vector<Integer> collection = new Vector<>();
 
         for (int i = 0; i < size-1; i++) {
             collection.add(1);
         }
         collection.add(target);
 
-        IMatcher<Integer> matcher = (Integer toMatch) -> target == toMatch;
-        startFinder(collection, matcher);
+        for (int i = 0; i < 10; i++) {
+            startFinder(collection, elem -> elem == target);
+        }
     }
 }
