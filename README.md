@@ -29,3 +29,10 @@
 - 4.4 Merge STL Containers
 - 4.5 `between()` algorithm
 - ~~4.6 RegEx Spell Checker~~
+
+### Exercise 5
+- 5.1 RegEx Spell Checker
+- 5.2 Connect 4 with Inheritance
+- 5.3 Connect 4 with Factory
+- 5.4 Inheritance Construction and Destruction
+- 5.5 Merge STL Containers (again)
