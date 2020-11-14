@@ -13,14 +13,9 @@ int get_index(Iter fst, Iter cur) {
 
 template<typename Iter>
 void check_between(Iter begin, Iter fst, Iter lst, Iter i) {
-    if (between(fst, lst, i)) {
-        cout << "Index " << get_index(begin, i) << " is between " <<
-             get_index(begin, fst) << " and " << get_index(begin, lst) << endl;
-    }
-    else {
-        cout << "Index " << get_index(begin, i) << " is not between " <<
-             get_index(begin, fst) << " and " << get_index(begin, lst) << endl;
-    }
+    bool isBetween = between(fst, lst, i);
+    cout << "Index " << get_index(begin, i) << " is " << (isBetween ? "" : "not ") << "between Index " <<
+         get_index(begin, fst) << " and " << get_index(begin, lst) << endl;
 }
 
 int main() {

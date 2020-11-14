@@ -6,12 +6,16 @@
 using namespace std;
 
 template<typename T, typename C1, typename C2, typename M=merge_traits<C1, T>>
-void merge(C1 &a, C2 &b) {
-    for (T t : b) {
-        M::merge(a,t);
+C1 merge(C1 &a, C2 &b) {
+    C1 res;
+    for (T t : a) {
+        M::merge(res, t);
     }
+    for (T t : b) {
+        M::merge(res, t);
+    }
+    return res;
 }
-
 
 
 #endif //EX4_4_MERGE_H

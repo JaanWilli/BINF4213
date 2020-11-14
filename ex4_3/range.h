@@ -12,10 +12,6 @@ public:
         return cur;
     }
 
-    bool operator==(const range_iter &i) const {
-        return cur == i.cur;
-    }
-
     bool operator!=(const range_iter &i) const {
         return cur != i.cur;
     }
@@ -39,10 +35,8 @@ public:
     }
 
     range_iter end() const {
-        return range_iter(high);
+        return range_iter(high+1);
     }
 };
-
-
 
 #endif //EX4_3_RANGE_H

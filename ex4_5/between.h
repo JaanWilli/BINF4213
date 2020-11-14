@@ -24,7 +24,7 @@ bool betweenImpl(Iter fst, Iter lst, Iter i, std::forward_iterator_tag) {
 }
 
 template<typename Iter>
-static bool between(Iter fst, Iter lst, Iter i) {
+bool between(Iter fst, Iter lst, Iter i) {
     typedef typename std::iterator_traits<Iter>::iterator_category category;
     return betweenImpl(fst, lst, i, category());
 }

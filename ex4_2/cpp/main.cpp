@@ -16,8 +16,8 @@ void startFinder(C c, bool (*matcher)(const E)) {
     auto stop = chrono::high_resolution_clock::now();
 
     auto time = chrono::duration_cast<chrono::nanoseconds>(stop - start).count()/1000000000.0;
-
     cout << setprecision(2) << fixed;
+
     if (elem_it != c.end()) {
         cout << "Found match in " << time << " seconds." << endl;
     }
@@ -26,17 +26,16 @@ void startFinder(C c, bool (*matcher)(const E)) {
 int main() {
 
     const int size = 100000000;
-    const int target = 0;
 
     vector<int> collection;
 
     for (int i = 0; i < size-1; ++i) {
         collection.push_back(1);
     }
-    collection.push_back(target);
+    collection.push_back(0);
 
     for (int i = 0; i < 10; ++i) {
-        startFinder<int>(collection, [](int elem) {return elem == target;});
+        startFinder<int>(collection, [](int elem) {return elem == 0;});
     }
 
     return 0;

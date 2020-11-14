@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,17 +21,16 @@ public class Main {
     public static void main(String[] args) {
 
         int size = 100000000;
-        int target = 0;
 
         Vector<Integer> collection = new Vector<>();
 
         for (int i = 0; i < size-1; i++) {
             collection.add(1);
         }
-        collection.add(target);
+        collection.add(0);
 
         for (int i = 0; i < 10; i++) {
-            startFinder(collection, elem -> elem == target);
+            startFinder(collection, elem -> elem == 0);
         }
     }
 }
