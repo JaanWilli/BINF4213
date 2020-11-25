@@ -54,6 +54,10 @@ int main() {
     merge(m1, m2, m);
     print(m);
 
+    m = {};
+    merge(v1, l2, m);
+    print(m);
+
     forward_list<int> fl;
     merge(fl1, fl2, fl);
     print(fl);

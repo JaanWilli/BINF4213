@@ -1,6 +1,5 @@
 #include <iostream>
 #include "jan_playfield.h"
-#include "game.h"
 #include "human_player.h"
 #include "jan_player.h"
 
