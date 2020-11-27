@@ -2,18 +2,55 @@
 
 using namespace std;
 
-class parent {
+class parentMember {
 public:
-    parent() {
-        cout << "Construct parent class" << endl;
+    parentMember() {
+        cout << "Construct parent member class" << endl;
     }
 
-    ~parent() {
-        cout << "Destruct parent class" << endl;
+    ~parentMember() {
+        cout << "Destruct parent member class" << endl;
     }
 };
 
-class child : public parent {
+class childMember {
+public:
+    childMember() {
+        cout << "Construct child member class" << endl;
+    }
+
+    ~childMember() {
+        cout << "Destruct child member class" << endl;
+    }
+};
+
+
+class father {
+    parentMember parentMember;
+public:
+    father() {
+        cout << "Construct father class" << endl;
+    }
+
+    ~father() {
+        cout << "Destruct father class" << endl;
+    }
+};
+
+class mother {
+    parentMember parentMember;
+public:
+    mother() {
+        cout << "Construct mother class" << endl;
+    }
+
+    ~mother() {
+        cout << "Destruct mother class" << endl;
+    }
+};
+
+class child : public father, public mother {
+    childMember childMember;
 public:
     child() {
         cout << "Construct child class" << endl;
@@ -26,5 +63,6 @@ public:
 
 int main() {
     child c;
+    cout << "-----------" << endl;
     return 0;
 }

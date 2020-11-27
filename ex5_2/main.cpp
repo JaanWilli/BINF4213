@@ -7,8 +7,12 @@ using namespace std;
 
 typedef playfield_traits<playfield> PT;
 
-template<typename P1, typename P2>
-void play(jan_playfield &field, P1 p1, P2 p2) {
+int main() {
+
+    auto field = jan_playfield();
+    auto p1 = human_player(1);
+    auto p2 = jan_player(2);
+
     int current = 1;
 
     while (PT::is_not_full(field)) {
@@ -29,16 +33,10 @@ void play(jan_playfield &field, P1 p1, P2 p2) {
         if (PT::has_won(field, current)) {
             field.print();
             std::cout << "Player " << current << " won!" << std::endl;
-            return;
+            return 0;
         }
 
         current = PT::next_player(current);
     }
     std::cout << "It's a draw..." << std::endl;
-}
-
-int main() {
-
-    auto field = jan_playfield();
-    play(field, human_player(1), jan_player(2));
 }

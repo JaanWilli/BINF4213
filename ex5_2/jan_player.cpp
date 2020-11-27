@@ -4,10 +4,10 @@ struct jan_player::copy_playfield : public playfield {
     char rep[width][height]{};
 
     int stoneat(int x, int y) const override {
-    if (x >= 0 && x < width && y >= 0 && y < height)
-    return rep[x][y];
-    else
-    return none;
+        if (x >= 0 && x < width && y >= 0 && y < height)
+            return rep[x][y];
+        else
+            return none;
     }
 
     explicit copy_playfield(const playfield &field) {

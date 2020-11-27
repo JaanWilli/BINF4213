@@ -39,8 +39,8 @@ void play(jan_playfield &field, player *p1, player *p2) {
 int main() {
 
     int c = 0;
-    auto p1 = player_factory::getPlayer("human", ++c);
-    auto p2 = player_factory::getPlayer("jan", ++c);
+    player *p1 = player_factory::getPlayer("human", ++c);
+    player *p2 = player_factory::getPlayer("jan", ++c);
 
     auto field = jan_playfield();
     play(field, p1, p2);
