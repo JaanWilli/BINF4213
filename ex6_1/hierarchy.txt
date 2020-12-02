@@ -1,0 +1,18 @@
+collection
+	list
+		list
+		forward_list
+		vector
+		array
+	queue
+		dequeue
+	set
+		set
+		multiset
+		unordered_set
+		unordered_multiset
+	map
+		map
+		multimap
+		unordered_map
+		unordered_multimap
