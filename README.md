@@ -36,3 +36,9 @@
 - 5.3 Connect 4 with Factory
 - 5.4 Inheritance Construction and Destruction
 - 5.5 Merge STL Containers (again)
+
+### Exercise 6
+- 6.1 Containers with Inheritance
+- 6.2 Locker Class
+- 6.3 `aspolar` modifier
+- 6.4 Custom `streambuf`
