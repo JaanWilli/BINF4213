@@ -42,3 +42,7 @@
 - 6.2 Locker Class
 - 6.3 `aspolar` modifier
 - 6.4 Custom `streambuf`
+
+### Exercise 7
+- 7.1 Metaprogramming
+- 7.2 `between()` with `enable_if`
