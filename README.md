@@ -11,7 +11,7 @@
 ### Exercise 2
 - 2.1 Persistent Vector
 - 2.2 Header vs Implementation File
-- 2.3 Template-based RPN
+- 2.3 Template-based RPN + Makefile
 - 2.4 Connect 4
 - 2.5 * vs &
 
