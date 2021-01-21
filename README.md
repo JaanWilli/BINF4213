@@ -1,7 +1,6 @@
 # BINF4213
 ## Advanced Programming in C++ HS20
 
-### Exercise 1
 | Exercise | Topic | Theory Topics |
 | --- | --- | --- |
 | [1.1](./ex1_1) | File Conversion | `ifstream`, `ofstream` |
